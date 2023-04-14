@@ -11,8 +11,11 @@ function ItemForm({ onAddItem }) {
     category: category, 
     isInCart: false,
   }
-  
-  const addItemRequest = {
+
+  function addItemToData(e) {
+    e.preventDefault()
+
+    const addItemRequest = {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -21,8 +24,6 @@ function ItemForm({ onAddItem }) {
     body:JSON.stringify(newItem)
   }
 
-  function addItemToData(e) {
-    e.preventDefault()
     fetch(itemsUrl, addItemRequest)
     .then(r => r.json())
     .then(newItem => onAddItem(newItem))
